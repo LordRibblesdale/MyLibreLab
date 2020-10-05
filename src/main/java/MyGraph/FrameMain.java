@@ -29,7 +29,11 @@ import java.awt.BorderLayout;
 public class FrameMain extends javax.swing.JFrame {
 
     public MyGraph graph;
+<<<<<<< HEAD
     public int AustoscaleInterval = 600;
+=======
+    public Integer AustoscaleInterval = Integer.valueOf(600);
+>>>>>>> upstream/master
 
     /**
      * Creates new form FrameMain

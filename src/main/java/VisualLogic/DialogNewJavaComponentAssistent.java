@@ -943,22 +943,38 @@ public class DialogNewJavaComponentAssistent extends javax.swing.JDialog impleme
 
             if (settings.pins.size() == 4) {
                 PinsSettings item1 = settings.pins.get(0);
+<<<<<<< HEAD
                 jSpinner4.setValue(item1.pinsCount);
+=======
+                jSpinner4.setValue(Integer.valueOf(item1.pinsCount));
+>>>>>>> upstream/master
                 jCheckBox9.setSelected(item1.pinsVisible);
                 loadItems(model1, item1);
 
                 PinsSettings item2 = settings.pins.get(1);
+<<<<<<< HEAD
                 jSpinner5.setValue(item2.pinsCount);
+=======
+                jSpinner5.setValue(Integer.valueOf(item2.pinsCount));
+>>>>>>> upstream/master
                 jCheckBox10.setSelected(item2.pinsVisible);
                 loadItems(model2, item2);
 
                 PinsSettings item3 = settings.pins.get(2);
+<<<<<<< HEAD
                 jSpinner6.setValue(item3.pinsCount);
+=======
+                jSpinner6.setValue(Integer.valueOf(item3.pinsCount));
+>>>>>>> upstream/master
                 jCheckBox11.setSelected(item3.pinsVisible);
                 loadItems(model3, item3);
 
                 PinsSettings item4 = settings.pins.get(3);
+<<<<<<< HEAD
                 jSpinner7.setValue(item4.pinsCount);
+=======
+                jSpinner7.setValue(Integer.valueOf(item4.pinsCount));
+>>>>>>> upstream/master
                 jCheckBox12.setSelected(item4.pinsVisible);
                 loadItems(model4, item4);
             }

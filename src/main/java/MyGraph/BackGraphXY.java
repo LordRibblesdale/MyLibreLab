@@ -44,7 +44,11 @@ public class BackGraphXY extends GraphBackground {
     public Color nullLineColor = new Color(0, 0, 254);
     public boolean nullLineVisible = true;
 
+<<<<<<< HEAD
     public Integer AustoscaleInterval = 600;
+=======
+    public Integer AustoscaleInterval = Integer.valueOf(600);
+>>>>>>> upstream/master
 
     public void setAutoScaleInterval(Integer Interval) {
         this.AustoscaleInterval = Interval;

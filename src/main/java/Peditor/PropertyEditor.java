@@ -31,6 +31,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
+<<<<<<< HEAD
+=======
+import java.util.List;
+>>>>>>> upstream/master
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -898,6 +902,7 @@ class PropertiesEditor extends JButton implements PEIF, ActionListener {
             try {
                 newVersion = Integer.parseInt(vmobject.owner.basisVersion);
             } catch (Exception ex) {
+                org.tinylog.Logger.error(ex);
             }
             newVersion++;
             vmobject.owner.basisVersion = "" + newVersion;
@@ -956,8 +961,12 @@ class StringEditor extends JTextField implements PEIF {
  * @author Homer
  */
 public class PropertyEditor extends javax.swing.JPanel {
+<<<<<<< HEAD
 
     ArrayList<PropertyEditorItem> liste = new ArrayList<>();
+=======
+    List<PropertyEditorItem> liste = new ArrayList<>();
+>>>>>>> upstream/master
     private final int itemHeight = 25;
     public Element element;
     public VMObject vmobject;

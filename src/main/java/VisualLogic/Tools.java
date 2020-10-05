@@ -1161,7 +1161,7 @@ public class Tools {
             if (started) {
                 result.addPoint(x, y);
             }
-            if (started == true && endPoint.x == x && endPoint.y == y) {
+            if (started && endPoint.x == x && endPoint.y == y) {
                 return result;
             }
         }
@@ -1169,7 +1169,7 @@ public class Tools {
         return result;
     }
 
-    public static void saveProjectsFile(File file, ArrayList<String> liste) {
+    public static void saveProjectsFile(File file, List<String> liste) {
         try (BufferedWriter out = new BufferedWriter(new FileWriter(file))) {
 
 

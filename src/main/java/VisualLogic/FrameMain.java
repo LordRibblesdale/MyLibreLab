@@ -135,10 +135,10 @@ public class FrameMain extends javax.swing.JFrame implements MyOpenLabOwnerIF, p
     public JLabel layedLabel = new JLabel(""); // NOI18N
     public FrameErrorWarnings errorWarnings = new FrameErrorWarnings();
     public boolean frontMode = false;
-    public ArrayList<String> projects = new ArrayList<>();
+    public List<String> projects = new ArrayList<>();
     String driverPath;
     // public Console console= new Console();
-    public ArrayList<Basis> desktop = new ArrayList<>();
+    public List<Basis> desktop = new ArrayList<>();
     public boolean modePanel = false;
     public Settings settings = new Settings();
     // private FrameMain frameMain;
@@ -384,7 +384,7 @@ public class FrameMain extends javax.swing.JFrame implements MyOpenLabOwnerIF, p
     }
 
     public String searchElement(File file) {
-        System.out.println("Element not found : " + file.getName());
+        org.tinylog.Logger.info("Element not found : " + file.getName());
         // boolean res = setQuestionDialogYES_NO_CANCEL(this, "Element not found : " + file.getName() + "\n"
         // + "do you want to search the Element?");
         boolean res = false;
@@ -464,6 +464,7 @@ public class FrameMain extends javax.swing.JFrame implements MyOpenLabOwnerIF, p
                     java.awt.Desktop.getDesktop().open(myFile);
                 }
             } catch (IOException ex) {
+                org.tinylog.Logger.error(ex);
             }
         } else if (command.equalsIgnoreCase("EDITFILE")) {
 
@@ -482,9 +483,10 @@ public class FrameMain extends javax.swing.JFrame implements MyOpenLabOwnerIF, p
 
                 if (htmlEditor != null && htmlEditor.length() > 0 && new File(htmlEditor).exists()) {
                     try {
-                        Runtime.getRuntime().exec(settings.getHTMLEditor() + " \"" + str + "\"");
+                        Runtime.getRuntime().exec(new String[] {settings.getHTMLEditor(), " \"", str, "\""});
                         return;
                     } catch (IOException ex) {
+                        org.tinylog.Logger.error(ex);
                     }
                 }
             }
@@ -493,9 +495,10 @@ public class FrameMain extends javax.swing.JFrame implements MyOpenLabOwnerIF, p
                 if (settings.getGraphicEditor() != null && settings.getGraphicEditor().length() > 0
                         && new File(settings.getGraphicEditor()).exists()) {
                     try {
-                        Runtime.getRuntime().exec(settings.getGraphicEditor() + " \"" + str + "\"");
+                        Runtime.getRuntime().exec(new String[] {settings.getGraphicEditor(), " \"", str, "\""});
                         return;
                     } catch (IOException ex) {
+                        org.tinylog.Logger.error(ex);
                     }
                 }
             }
@@ -661,7 +664,7 @@ public class FrameMain extends javax.swing.JFrame implements MyOpenLabOwnerIF, p
         for (int i = 0; i < jPaneVMPanels.getComponentCount(); i++) {
             Component comp = jPaneVMPanels.getComponent(i);
 
-            System.out.println("" + comp.toString());
+            org.tinylog.Logger.info("" + comp.toString());
             if (comp instanceof VMEditorPanel) {
                 VMEditorPanel pnl = (VMEditorPanel) comp;
                 if (pnl.basis.fileName.equalsIgnoreCase(vmFileName)) {
@@ -920,7 +923,8 @@ public class FrameMain extends javax.swing.JFrame implements MyOpenLabOwnerIF, p
                     if (button.panel != null) {
                         closeVM(button.panel);
                     } else {
-                        System.out.println("Null Button - VisualLogic.FrameMain$2.actionPerformed(FrameMain.java:898)");
+                        org.tinylog.Logger
+                                .info("Null Button - VisualLogic.FrameMain$2.actionPerformed(FrameMain.java:898)");
                     }
                     // button.panel = null; //If user Cancel this button will be null when try to close, It must not be
                     // setted null
@@ -1268,9 +1272,9 @@ public class FrameMain extends javax.swing.JFrame implements MyOpenLabOwnerIF, p
         }
     }
 
-    private ArrayList<String> listDirectory(String dir) {
+    private List<String> listDirectory(String dir) {
         File directory = new File(dir);
-        ArrayList<String> files = new ArrayList<>();
+        List<String> files = new ArrayList<>();
         // get all the files from a directory
         File[] fList = directory.listFiles();
         if (fList != null) {
@@ -1296,7 +1300,7 @@ public class FrameMain extends javax.swing.JFrame implements MyOpenLabOwnerIF, p
         // List all Documents in their DIrectories
         File directory = new File(elementPath + "/Documentations");
 
-        ArrayList<String> files = new ArrayList<>();
+        List<String> files = new ArrayList<>();
         // get all the files from a directory
         File[] fList = directory.listFiles();
         if (fList != null) {
@@ -1310,7 +1314,7 @@ public class FrameMain extends javax.swing.JFrame implements MyOpenLabOwnerIF, p
                     jmnuDocs.add(menu);
 
                     menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Bilder/16x16/book.png"))); // NOI18N
-                    ArrayList<String> files2 = listDirectory(file.getAbsolutePath());
+                    List<String> files2 = listDirectory(file.getAbsolutePath());
 
                     for (String file2 : files2) {
                         MyMenuItem item = new MyMenuItem();
@@ -1387,7 +1391,7 @@ public class FrameMain extends javax.swing.JFrame implements MyOpenLabOwnerIF, p
             Image iconImage32 = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Bilder/icon_32.png"));
             Image iconImage64 = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Bilder/icon_64.png"));
 
-            ArrayList<Image> images = new ArrayList<>();
+            List<Image> images = new ArrayList<>();
             images.add(iconImage);
             images.add(iconImage32);
             images.add(iconImage64);
@@ -1420,7 +1424,7 @@ public class FrameMain extends javax.swing.JFrame implements MyOpenLabOwnerIF, p
             }
         }
 
-        ArrayList<String> projectsX = Tools.loadProjectsFile(new File(fileName));
+        List<String> projectsX = Tools.loadProjectsFile(new File(fileName));
 
         // ArrayList<String> projects = new ArrayList<>();
         projects = new ArrayList<>();
@@ -1468,7 +1472,7 @@ public class FrameMain extends javax.swing.JFrame implements MyOpenLabOwnerIF, p
             Tools.saveText(new File(fileName), myopenlabX);
         }
 
-        System.out.println("myopenlab Path=" + myopenlabX);
+        org.tinylog.Logger.info("myopenlab Path=" + myopenlabX);
 
         try {
             String OS_arch = System.getProperty("os.arch"); // arm Raspberry PI
@@ -1892,7 +1896,7 @@ public class FrameMain extends javax.swing.JFrame implements MyOpenLabOwnerIF, p
         }
     }
 
-    private ArrayList<String> selectedPaths = new ArrayList<String>();
+    private List<String> selectedPaths = new ArrayList<String>();
 
     public void recursionSaveProjectStatus(MyNode node) {
         if (node instanceof MyNode) {
@@ -1903,7 +1907,7 @@ public class FrameMain extends javax.swing.JFrame implements MyOpenLabOwnerIF, p
                 String path = file.getPath();
 
                 selectedPaths.add(path);
-                System.out.println("" + path);
+                org.tinylog.Logger.info("" + path);
             }
             recursionSaveProjectStatus((MyNode) nodex.getNextNode());
         }
@@ -1962,7 +1966,7 @@ public class FrameMain extends javax.swing.JFrame implements MyOpenLabOwnerIF, p
 
             // UIManager.setLookAndFeel(nativeLF);
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-                System.out.println(info.getName());
+                org.tinylog.Logger.info(info.getName());
                 // UIManager.setLookAndFeel( "com.seaglasslookandfeel.SeaGlassLookAndFeel" );
 
                 // System.out.println("SYSTEM_laf:"+UIManager.getSystemLookAndFeelClassName()); //SYSTEM
@@ -2166,7 +2170,7 @@ public class FrameMain extends javax.swing.JFrame implements MyOpenLabOwnerIF, p
 
         errorWarnings = new FrameErrorWarnings();
 
-        System.out.println("Locale=" + settings.getLanguage());
+        org.tinylog.Logger.info("Locale=" + settings.getLanguage());
     }
 
     public static String arg1;
@@ -2254,7 +2258,7 @@ public class FrameMain extends javax.swing.JFrame implements MyOpenLabOwnerIF, p
 
         if (args.length > 0) {
             for (int i = 0; i < args.length; i++) {
-                System.out.println("Arg[" + i + "]=" + args[i]);
+                org.tinylog.Logger.info("Arg[" + i + "]=" + args[i]);
             }
             FrameMain.elementPath = args[0];
 
@@ -2265,7 +2269,7 @@ public class FrameMain extends javax.swing.JFrame implements MyOpenLabOwnerIF, p
         frm = new FrameMain(args);
 
         if (args.length >= 2) {
-            System.out.println("Arg[1]=" + args[1]);
+            org.tinylog.Logger.info("Arg[1]=" + args[1]);
 
             arg1 = args[1];
             java.awt.EventQueue.invokeLater(new Runnable() {
@@ -3518,7 +3522,7 @@ public class FrameMain extends javax.swing.JFrame implements MyOpenLabOwnerIF, p
             if (index > -1) {
                 int idx = str.indexOf("\n", index);
 
-                System.out.println("idx=" + idx);
+                org.tinylog.Logger.info("idx=" + idx);
                 String aa = "%eval-property%";
                 String str2 = str.substring(index + aa.length(), idx);
                 str2 = str2.trim();
@@ -3537,7 +3541,7 @@ public class FrameMain extends javax.swing.JFrame implements MyOpenLabOwnerIF, p
                 String strUnten = str.substring(idx, str.length());
 
                 str = strOben + strMitte + strUnten;
-                System.out.println("" + str);
+                org.tinylog.Logger.info("" + str);
             }
             if (index == -1) {
                 break;
@@ -3559,7 +3563,7 @@ public class FrameMain extends javax.swing.JFrame implements MyOpenLabOwnerIF, p
                     idx = idx3;
                 }
 
-                System.out.println("idx=" + idx);
+                org.tinylog.Logger.info("idx=" + idx);
                 String aa = "%get-property%";
                 String str2 = str.substring(index + aa.length(), idx);
                 str2 = str2.trim();
@@ -3578,7 +3582,7 @@ public class FrameMain extends javax.swing.JFrame implements MyOpenLabOwnerIF, p
                 String strUnten = str.substring(idx, str.length());
 
                 str = strOben + strMitte + strUnten;
-                System.out.println("" + str);
+                org.tinylog.Logger.info("" + str);
             }
             if (index == -1) {
                 break;
@@ -4308,9 +4312,9 @@ public class FrameMain extends javax.swing.JFrame implements MyOpenLabOwnerIF, p
         int pinIndex;
     }
 
-    public ArrayList<LineInfo> selectAllDrahtsWhereIntersectWithRectaqngle(ArrayList<Element> elements, int x1, int y1,
-            int x2, int y2, int align) {
-        ArrayList<LineInfo> result = new ArrayList<LineInfo>();
+    public List<LineInfo> selectAllDrahtsWhereIntersectWithRectaqngle(List<Element> elements, int x1, int y1, int x2,
+            int y2, int align) {
+        List<LineInfo> result = new ArrayList<>();
 
         Element element;
         JPin pin;
@@ -4408,7 +4412,7 @@ public class FrameMain extends javax.swing.JFrame implements MyOpenLabOwnerIF, p
         JPin dstPinX = dstElement.getPin(dstPin);
 
         if (info.pin != null && info.pin.pinIO == JPin.PIN_INPUT) {
-            System.out.println("X INPUT");
+            org.tinylog.Logger.info("X INPUT");
 
             BackupDrahtInput tmp = new BackupDrahtInput();
             tmp.sourceElementID = draht.sourceElementID;
@@ -4434,7 +4438,7 @@ public class FrameMain extends javax.swing.JFrame implements MyOpenLabOwnerIF, p
             inputPin.setSelected(true);
             yx1 += 50;
         } else if (info.pin != null && info.pin.pinIO == JPin.PIN_OUTPUT) {
-            System.out.println("X OUTPUT");
+            org.tinylog.Logger.info("X OUTPUT");
 
             BackupDrahtOutut tmp = new BackupDrahtOutut();
             tmp.destElementID = draht.destElementID;
@@ -4492,7 +4496,7 @@ public class FrameMain extends javax.swing.JFrame implements MyOpenLabOwnerIF, p
             int x2 = rect.width;
             int y2 = rect.height;
 
-            ArrayList<Element> elements = vm.getSelectedElements();
+            List<Element> elements = vm.getSelectedElements();
 
             Basis basis = createNewVM();
 
@@ -4513,8 +4517,7 @@ public class FrameMain extends javax.swing.JFrame implements MyOpenLabOwnerIF, p
             backupDrahtsOutputs = new ArrayList<BackupDrahtOutut>();
 
             for (i = 0; i < 4; i++) {
-                ArrayList<LineInfo> lineInfos =
-                        selectAllDrahtsWhereIntersectWithRectaqngle(elements, x1, y1, x2, y2, i);
+                List<LineInfo> lineInfos = selectAllDrahtsWhereIntersectWithRectaqngle(elements, x1, y1, x2, y2, i);
 
                 for (j = 0; j < lineInfos.size(); j++) {
                     info = lineInfos.get(j);
@@ -4753,7 +4756,7 @@ public class FrameMain extends javax.swing.JFrame implements MyOpenLabOwnerIF, p
                 }
 
                 try {
-                    Runtime.getRuntime().exec(javaeditor + " " + strFileA + " " + strFileB);
+                    Runtime.getRuntime().exec(new String[] {javaeditor, " ", strFileA, " ", strFileB});
                 } catch (IOException ex) {
                     Tools.showMessage(java.util.ResourceBundle.getBundle("BasisStatus/StatusIdle")
                             .getString("Javaeditor_not_found!"));
@@ -5390,11 +5393,11 @@ public class FrameMain extends javax.swing.JFrame implements MyOpenLabOwnerIF, p
     private void formWindowStateChanged(java.awt.event.WindowEvent evt) {// GEN-FIRST:event_formWindowStateChanged
 
         if (getExtendedState() == this.MAXIMIZED_BOTH) {
-            System.out.println("MAX");
+            org.tinylog.Logger.info("MAX");
         }
 
         if (getExtendedState() == this.NORMAL) {
-            System.out.println("NORMAL");
+            org.tinylog.Logger.info("NORMAL");
 
             java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
             // setLocation((screenSize.width-getWidth())/2, (screenSize.height-getHeight())/2);
@@ -5875,7 +5878,7 @@ public class FrameMain extends javax.swing.JFrame implements MyOpenLabOwnerIF, p
     // MyOpenLabIF
     public void ownerMessage(String message) {
         // Tools.showMessage(this, message);
-        System.out.println("Message=" + message);
+        org.tinylog.Logger.info("Message=" + message);
     }
 
     private void runPLCSimulator(String code) {
@@ -6049,7 +6052,7 @@ public class FrameMain extends javax.swing.JFrame implements MyOpenLabOwnerIF, p
             if (ch.trim().length() == 0) {
                 // ende des Labe erkannt
                 String label = code.substring(beginIndex, index);
-                System.out.println("" + label);
+                org.tinylog.Logger.info("" + label);
 
                 // ist untendrunter das Label vorhanden?
                 int lastIndex = index;
@@ -6100,7 +6103,7 @@ public class FrameMain extends javax.swing.JFrame implements MyOpenLabOwnerIF, p
             }
 
             index += 4;
-            System.out.println("" + code.length());
+            org.tinylog.Logger.info("" + code.length());
             if (index >= code.length()) {
                 break;
             }

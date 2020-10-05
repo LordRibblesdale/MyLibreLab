@@ -21,7 +21,10 @@
 package MyParser;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.StringTokenizer;
+
+import org.tinylog.Logger;
 
 import VisualLogic.Basis;
 import VisualLogic.variables.VSFlowInfo;
@@ -68,11 +71,19 @@ public class Parser {
     private static final String OPERATOREN = "<>+-*/^%=&|!";
     private static final String KLAMMER = "()";
     private StringTokenizer tokenizer;
+<<<<<<< HEAD
     private ArrayList<String> mainVector = new ArrayList<>();
     private ArrayList<Token> optVector;
     private int pointer = 0;
     private ArrayList<OpenVariable> varsGlobal = new ArrayList<>();
     private ArrayList<OpenVariable> varsLocal = new ArrayList<>();
+=======
+    private List<String> mainVector = new ArrayList<>();
+    private List<Token> optVector;
+    private int pointer = 0;
+    private List<OpenVariable> varsGlobal = new ArrayList<>();
+    private List<OpenVariable> varsLocal = new ArrayList<>();
+>>>>>>> upstream/master
     private String errorMessage = "";
     public String resultVariable = "";
     private static final int C_DOUBLE = 1;
@@ -200,8 +211,13 @@ public class Parser {
         return r;
     }
 
+<<<<<<< HEAD
     private ArrayList<Token> optimize(ArrayList<String> vector) {
         ArrayList<Token> result = new ArrayList<>();
+=======
+    private List<Token> optimize(List<String> vector) {
+        List<Token> result = new ArrayList<>();
+>>>>>>> upstream/master
 
         for (String value : vector) {
 
@@ -242,7 +258,11 @@ public class Parser {
 
     String lastVar = "";
 
+<<<<<<< HEAD
     private String calcString(ArrayList<Token> vector) {
+=======
+    private String calcString(List<Token> vector) {
+>>>>>>> upstream/master
         String value = "";
 
         while (pointer < vector.size()) {
@@ -282,7 +302,11 @@ public class Parser {
         return value;
     }
 
+<<<<<<< HEAD
     private boolean calcBoolean(ArrayList<Token> vector) {
+=======
+    private boolean calcBoolean(List<Token> vector) {
+>>>>>>> upstream/master
         boolean value = false;
 
         while (pointer < vector.size()) {
@@ -328,7 +352,11 @@ public class Parser {
         return value;
     }
 
+<<<<<<< HEAD
     private double calcDouble(ArrayList<Token> vector) {
+=======
+    private double calcDouble(List<Token> vector) {
+>>>>>>> upstream/master
         double num = 0.0;
 
         while (pointer < vector.size()) {
@@ -414,7 +442,11 @@ public class Parser {
         return num;
     }
 
+<<<<<<< HEAD
     private int sucheRechtsNachKlammer(ArrayList<String> tokenListe, int pos) {
+=======
+    private int sucheRechtsNachKlammer(List<String> tokenListe, int pos) {
+>>>>>>> upstream/master
         int c = 0;
         for (int i = pos; i < tokenListe.size(); i++) {
             String str = tokenListe.get(i);
@@ -429,7 +461,11 @@ public class Parser {
         return -1;
     }
 
+<<<<<<< HEAD
     private int sucheLinksNachKlammer(ArrayList<String> tokenListe, int pos) {
+=======
+    private int sucheLinksNachKlammer(List<String> tokenListe, int pos) {
+>>>>>>> upstream/master
         int c = 0;
         for (int i = pos; i >= 0; i--) {
             String str = tokenListe.get(i);
@@ -449,7 +485,11 @@ public class Parser {
      * oder nicht ge�ffnet worden ist Liefert bei zu viel ge�ffneten Klammern > 0 Liefert bei zu viel
      * geschlossenen Klammern < 0
      */
+<<<<<<< HEAD
     private int getKlammerPlus(ArrayList<String> tokenListe) {
+=======
+    private int getKlammerPlus(List<String> tokenListe) {
+>>>>>>> upstream/master
         int c = 0;
         for (String s : tokenListe) {
             if (s.equals("(")) c++;
@@ -460,7 +500,11 @@ public class Parser {
 
     // bei -5+1 -> 0-5+1
     // bei -5+(-1) -> 0-5+(0-1)
+<<<<<<< HEAD
     private void handleMinusOperator(ArrayList<String> tokenListe) {
+=======
+    private void handleMinusOperator(List<String> tokenListe) {
+>>>>>>> upstream/master
 
         int i = 0;
 
@@ -484,17 +528,21 @@ public class Parser {
 
     public void print() {
         int i = 0;
-        System.out.println("--------------------------");
+        Logger.info("--------------------------");
         while (i < mainVector.size()) {
             String str = (String) mainVector.get(i);
-            System.out.print(str + ",");
+            Logger.info(str + ",");
             i++;
         }
-        System.out.println();
-        System.out.println("--------------------------");
+        Logger.info("\n");
+        Logger.info("--------------------------");
     }
 
+<<<<<<< HEAD
     private void klammere(ArrayList<String> tokenListe, int ops) {
+=======
+    private void klammere(List<String> tokenListe, int ops) {
+>>>>>>> upstream/master
         boolean inKlammer = false;
         int i = 0;
 
@@ -546,7 +594,11 @@ public class Parser {
         }
     }
 
+<<<<<<< HEAD
     private void setVariablen(ArrayList<Token> tokenListe) {
+=======
+    private void setVariablen(List<Token> tokenListe) {
+>>>>>>> upstream/master
         for (Token value : tokenListe) {
             if (value.isVar) {
                 if (varExistLocal(value.varName)) {
@@ -607,7 +659,11 @@ public class Parser {
         return expr.substring(start, counter);
     }
 
+<<<<<<< HEAD
     private void tokensToVector(String expression, ArrayList<String> vector) {
+=======
+    private void tokensToVector(String expression, List<String> vector) {
+>>>>>>> upstream/master
 
         counter = 0;
         expr = expression;
@@ -697,7 +753,11 @@ public class Parser {
     // liefert 1 f�r Boolean
     // liefert 2 f�r String
     // liefert -1 f�r unbekannt oder gemixt!
+<<<<<<< HEAD
     private int getToParseType(ArrayList<Token> vector) {
+=======
+    private int getToParseType(List<Token> vector) {
+>>>>>>> upstream/master
         int result = -1;
         for (Token token : vector) {
             if (token.value instanceof Double) {
@@ -724,7 +784,11 @@ public class Parser {
     public Object parseString(String expr) {
         setExpression(expr);
         lastVar = "";
+<<<<<<< HEAD
         ArrayList<Token> vector = new ArrayList<>(optVector);
+=======
+        List<Token> vector = new ArrayList<>(optVector);
+>>>>>>> upstream/master
         setVariablen(vector);
         pointer = 0;
 
@@ -732,9 +796,15 @@ public class Parser {
         if (type > -1) {
             switch (type) {
                 case 0:
+<<<<<<< HEAD
                     return calcDouble(vector);
                 case 1:
                     return calcBoolean(vector);
+=======
+                    return Double.valueOf(calcDouble(vector));
+                case 1:
+                    return Boolean.valueOf(calcBoolean(vector));
+>>>>>>> upstream/master
                 case 2:
                     return calcString(vector);
             }
@@ -746,7 +816,11 @@ public class Parser {
     }
 
     public boolean parseBoolean() {
+<<<<<<< HEAD
         ArrayList<Token> vector = new ArrayList<>(optVector);
+=======
+        List<Token> vector = new ArrayList<>(optVector);
+>>>>>>> upstream/master
         setVariablen(vector);
         pointer = 0;
         return calcBoolean(vector);

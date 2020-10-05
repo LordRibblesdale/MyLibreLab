@@ -307,7 +307,11 @@ public class MyGraph extends javax.swing.JPanel {
         if (graph.graphRenderer.length > 0)
             return graph.graphRenderer[0].bufferLen;
         else
+<<<<<<< HEAD
             return 600;
+=======
+            return Integer.valueOf(600);
+>>>>>>> upstream/master
     }
 
     public Color getLineColor() {

@@ -158,6 +158,7 @@ public class Scanner {
         try {
             str = value.getText(0, textLength);
         } catch (BadLocationException e) {
+            org.tinylog.Logger.error(e);
         }
     }
 

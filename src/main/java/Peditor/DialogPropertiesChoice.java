@@ -22,6 +22,7 @@ package Peditor;
 
 import java.awt.Component;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.DefaultListModel;
 import javax.swing.event.ListSelectionEvent;
@@ -53,7 +54,11 @@ public class DialogPropertiesChoice extends javax.swing.JDialog implements ListS
     private PropertyEditor propertyEditor;
     private VMObject vmobject;
     private boolean loading = false;
+<<<<<<< HEAD
     public static ArrayList<BasisProperty> props = new ArrayList<>();
+=======
+    public static List<BasisProperty> props = new ArrayList<>();
+>>>>>>> upstream/master
     private DefaultListModel<BasisProperty> model = new DefaultListModel<>();
 
     public static boolean result = false;

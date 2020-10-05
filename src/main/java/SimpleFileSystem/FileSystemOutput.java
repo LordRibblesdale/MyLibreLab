@@ -24,6 +24,7 @@ import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Carmelo Salafia FileSystemOutput ist f�r das schreiben der Datensaetze und ihrer
@@ -31,7 +32,11 @@ import java.util.ArrayList;
  */
 
 public class FileSystemOutput {
+<<<<<<< HEAD
     private ArrayList<SFileDescriptor> liste = new ArrayList<>();
+=======
+    private List<SFileDescriptor> liste = new ArrayList<>();
+>>>>>>> upstream/master
     private FileOutputStream fos = null;
     private SFileDescriptor oldItem;
 
@@ -47,6 +52,7 @@ public class FileSystemOutput {
 
             dos.writeLong(123479); // platzhalter f�r die Position der IndexListe!
         } catch (Exception ex) {
+            org.tinylog.Logger.error(ex);
             System.out.println("Error in Methode createFile()" + ex.toString());
         }
     }
@@ -65,6 +71,7 @@ public class FileSystemOutput {
 
             oldItem = dt;
         } catch (Exception ex) {
+            org.tinylog.Logger.error(ex);
             System.out.println("Error in Methode addItem()" + ex.toString());
         }
         return fos;
@@ -80,7 +87,7 @@ public class FileSystemOutput {
                 long position = fos.getChannel().position();
                 oldItem.size = position - oldItem.position;
             } catch (Exception ex) {
-
+                org.tinylog.Logger.error(ex);
             }
         }
     }
@@ -107,6 +114,7 @@ public class FileSystemOutput {
             fos.getChannel().position(0);
             dos.writeLong(pos);
         } catch (Exception ex) {
+            org.tinylog.Logger.error(ex);
             System.out.println("Error in Methode addIndexList()" + ex.toString());
         }
     }
@@ -121,6 +129,7 @@ public class FileSystemOutput {
             fos.flush();
             fos.close();
         } catch (Exception ex) {
+            org.tinylog.Logger.error(ex);
             System.out.println("Error in Methode close()" + ex.toString());
         }
     }

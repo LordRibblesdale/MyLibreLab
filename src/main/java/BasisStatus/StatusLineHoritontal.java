@@ -30,7 +30,9 @@ import java.awt.Point;
 import java.awt.Polygon;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
+import java.util.List;
+
+import org.tinylog.Logger;
 
 import VisualLogic.Draht;
 import VisualLogic.Element;
@@ -45,7 +47,11 @@ import VisualLogic.VSDataType;
  * @author Carmelo
  */
 public class StatusLineHoritontal implements StatusBasisIF {
+<<<<<<< HEAD
     private ArrayList<Point> drahtPoints;
+=======
+    private List<Point> drahtPoints;
+>>>>>>> upstream/master
     private VMObject vmobject;
     private Point startPoint = new Point(0, 0);
     private Cursor CheckCursor;
@@ -62,7 +68,11 @@ public class StatusLineHoritontal implements StatusBasisIF {
     /**
      * Creates a new instance of StatusHoritontalLine
      */
+<<<<<<< HEAD
     public StatusLineHoritontal(VMObject vmobject, ArrayList<Point> drahtPoints, int sourceElementID, int sourcePin,
+=======
+    public StatusLineHoritontal(VMObject vmobject, List<Point> drahtPoints, int sourceElementID, int sourcePin,
+>>>>>>> upstream/master
             Point start) {
         this.vmobject = vmobject;
         this.drahtPoints = drahtPoints;
@@ -82,7 +92,11 @@ public class StatusLineHoritontal implements StatusBasisIF {
         sourceDataType = pin.dataType;
     }
 
+<<<<<<< HEAD
     private void copyPoints(ArrayList<Point> source, ArrayList<Point> dest) {
+=======
+    private void copyPoints(List<Point> source, List<Point> dest) {
+>>>>>>> upstream/master
         dest.clear();
         dest.addAll(source);
     }
@@ -182,9 +196,9 @@ public class StatusLineHoritontal implements StatusBasisIF {
         int[] xvalues = poly.xpoints;
         int[] yvalues = poly.ypoints;
 
-        System.out.println("Size=" + poly.npoints);
+        Logger.info("Size=" + poly.npoints);
         for (int i = 0; i < poly.npoints; i++) {
-            System.out.println("(" + xvalues[i] + "," + yvalues[i] + ")");
+            Logger.info("(" + xvalues[i] + "," + yvalues[i] + ")");
         }
     }
 
@@ -430,7 +444,7 @@ public class StatusLineHoritontal implements StatusBasisIF {
                 abschliessen(elementID, pin);
             }
         } catch (Exception er) {
-            System.out.println(er.getMessage());
+            org.tinylog.Logger.error(er);
         }
     }
 

@@ -116,7 +116,11 @@ public class OpenVariable {
         switch (datatype) {
             case C_DOUBLE:
 
+<<<<<<< HEAD
                 value = (double) 0;
+=======
+                value = Double.valueOf(0);
+>>>>>>> upstream/master
                 break;
             case C_STRING:
                 value = "";
@@ -125,7 +129,11 @@ public class OpenVariable {
                 value = Boolean.FALSE;
                 break;
             case C_INTEGER:
+<<<<<<< HEAD
                 value = 0;
+=======
+                value = Integer.valueOf(0);
+>>>>>>> upstream/master
                 break;
             case C_DOUBLE_1D:
                 value = new VS1DDouble(size1);

@@ -30,7 +30,7 @@ import java.awt.Point;
 import java.awt.Polygon;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
+import java.util.List;
 
 import VisualLogic.Draht;
 import VisualLogic.Element;
@@ -46,7 +46,11 @@ import VisualLogic.VSDataType;
  * @author Carmelo
  */
 public class StatusLineVertikal implements StatusBasisIF {
+<<<<<<< HEAD
     private ArrayList<Point> drahtPoints;
+=======
+    private List<Point> drahtPoints;
+>>>>>>> upstream/master
     private VMObject vmobject;
     private Point startPoint = new Point(0, 0);
     private Cursor CheckCursor;
@@ -63,7 +67,11 @@ public class StatusLineVertikal implements StatusBasisIF {
     /**
      * Creates a new instance of StatusHoritontalLine
      */
+<<<<<<< HEAD
     public StatusLineVertikal(VMObject vmobject, ArrayList<Point> drahtPoints, int sourceElementID, int sourcePin,
+=======
+    public StatusLineVertikal(VMObject vmobject, List<Point> drahtPoints, int sourceElementID, int sourcePin,
+>>>>>>> upstream/master
             Point start) {
         this.vmobject = vmobject;
         this.drahtPoints = drahtPoints;
@@ -84,7 +92,11 @@ public class StatusLineVertikal implements StatusBasisIF {
         sourceDataType = pin.dataType;
     }
 
+<<<<<<< HEAD
     private void copyPoints(ArrayList<Point> source, ArrayList<Point> dest) {
+=======
+    private void copyPoints(List<Point> source, List<Point> dest) {
+>>>>>>> upstream/master
         dest.clear();
         dest.addAll(source);
     }
@@ -422,7 +434,7 @@ public class StatusLineVertikal implements StatusBasisIF {
                     addStueck(startPoint, startPoint);
                 }
             } catch (NullPointerException eV) {
-
+                org.tinylog.Logger.error(eV);
             }
         }
     }

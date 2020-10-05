@@ -39,6 +39,7 @@ import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -113,8 +114,13 @@ public class Basis implements ElementIF, VSBasisIF {
     public boolean unDecorated = false;
     public boolean showFrontPanelWhenStart = true;
     // private Hashtable variablen = new Hashtable();
+<<<<<<< HEAD
     private ArrayList<VariableNotifyRecord> variableNotifyList = new ArrayList<>();
     public ArrayList<OpenVariable> variablenListe = new ArrayList<>();
+=======
+    private List<VariableNotifyRecord> variableNotifyList = new ArrayList<>();
+    public List<OpenVariable> variablenListe = new ArrayList<>();
+>>>>>>> upstream/master
     public boolean showToolBar = false;
     public Parser parser = new Parser(this);
     public BufferedImage selectionImage = null;
@@ -159,7 +165,11 @@ public class Basis implements ElementIF, VSBasisIF {
         // NOP
     }
 
+<<<<<<< HEAD
     private ArrayList<String> liste = new ArrayList<>();
+=======
+    private List<String> liste = new ArrayList<>();
+>>>>>>> upstream/master
 
     private boolean istEintragsBereitsVorhanden(String eintrag) {
         for (String val : liste) {
@@ -318,7 +328,7 @@ public class Basis implements ElementIF, VSBasisIF {
         String[] result = new String[variablenListe.size()];
         OpenVariable node;
         for (int i = 0; i < variablenListe.size(); i++) {
-            node = (OpenVariable) variablenListe.get(i);
+            node = variablenListe.get(i);
 
             result[i] = node.name;
         }
@@ -330,7 +340,7 @@ public class Basis implements ElementIF, VSBasisIF {
         Object[] result = new Object[variablenListe.size()];
         OpenVariable node;
         for (int i = 0; i < variablenListe.size(); i++) {
-            node = (OpenVariable) variablenListe.get(i);
+            node = variablenListe.get(i);
 
             result[i] = node.value;
         }
@@ -351,19 +361,31 @@ public class Basis implements ElementIF, VSBasisIF {
         if (node != null) {
             if (vsobject instanceof VSDouble && node.value instanceof Double) {
                 VSDouble v = (VSDouble) vsobject;
+<<<<<<< HEAD
                 node.value = v.getValue();
+=======
+                node.value = Double.valueOf(v.getValue());
+>>>>>>> upstream/master
                 result = true;
             } else if (vsobject instanceof VSString && node.value instanceof String) {
                 VSString v = (VSString) vsobject;
-                node.value = new String(v.getValue());
+                node.value = v.getValue();
                 result = true;
             } else if (vsobject instanceof VSBoolean && node.value instanceof Boolean) {
                 VSBoolean v = (VSBoolean) vsobject;
+<<<<<<< HEAD
                 node.value = v.getValue();
                 result = true;
             } else if (vsobject instanceof VSInteger && node.value instanceof Integer) {
                 VSInteger v = (VSInteger) vsobject;
                 node.value = v.getValue();
+=======
+                node.value = Boolean.valueOf(v.getValue());
+                result = true;
+            } else if (vsobject instanceof VSInteger && node.value instanceof Integer) {
+                VSInteger v = (VSInteger) vsobject;
+                node.value = Integer.valueOf(v.getValue());
+>>>>>>> upstream/master
                 result = true;
             }
         }
@@ -594,7 +616,7 @@ public class Basis implements ElementIF, VSBasisIF {
             } else if (o.value instanceof String && value instanceof String) {
                 o.value = value;
             } else {
-                System.out.println("Error setting Variable");
+                org.tinylog.Logger.info("Error setting Variable");
             }
         } else {
             Tools.showMessage("Variable \"" + varname + "\" not definied! \nPlease define the variable");
@@ -667,7 +689,11 @@ public class Basis implements ElementIF, VSBasisIF {
 
     public PropertyEditor propertyEditor = null;
     public boolean isFileLoaded = false;
+<<<<<<< HEAD
     public ArrayList<String> undoHistory = new ArrayList<>();
+=======
+    public List<String> undoHistory = new ArrayList<>();
+>>>>>>> upstream/master
     private String elementPath = "";
 
     public String getElementPath() {
@@ -1443,8 +1469,13 @@ public class Basis implements ElementIF, VSBasisIF {
 
         scrambleElementAndWires();
 
+<<<<<<< HEAD
         vmPassword = generatePassword();
         System.out.println("" + vmPassword);
+=======
+        String vmPassword = generatePassword();
+        org.tinylog.Logger.info("" + vmPassword);
+>>>>>>> upstream/master
         vmProtected = true;
         saveFile(filename, false);
     }
@@ -1564,7 +1595,11 @@ public class Basis implements ElementIF, VSBasisIF {
         }
     }
 
+<<<<<<< HEAD
     public void addPublishingFiles(ArrayList<String> list) {
+=======
+    public void addPublishingFiles(List<String> list) {
+>>>>>>> upstream/master
         getCircuitBasis().addPublishingFiles(list);
         getFrontBasis().addPublishingFiles(list);
     }
@@ -1608,6 +1643,7 @@ public class Basis implements ElementIF, VSBasisIF {
 
             return md.digest();
         } catch (NoSuchAlgorithmException ex) {
+            org.tinylog.Logger.error(ex);
         }
 
         return null;
@@ -1887,10 +1923,14 @@ public class Basis implements ElementIF, VSBasisIF {
     }
 
     public void saveToStream(FileSystemOutput fsOut, boolean onlySelected) {
+<<<<<<< HEAD
         try {
             FileOutputStream fos = fsOut.addItem("Properties");
             DataOutputStream dos = new DataOutputStream(fos);
 
+=======
+        try (FileOutputStream fos = fsOut.addItem("Properties"); DataOutputStream dos = new DataOutputStream(fos)) {
+>>>>>>> upstream/master
             dos.writeUTF(Version.strFileVersion); // Version
 
             // System.out.println("SavetoStream_BasisVersion:"+Version.strFileVersion+"|");
@@ -1949,6 +1989,10 @@ public class Basis implements ElementIF, VSBasisIF {
             // speichereNunAlleBasisElemente(circuitBasis,fsOut,onlySelected);
             // speichereNunAlleBasisElemente(frontBasis,fsOut,onlySelected);
         } catch (IOException e) {
+<<<<<<< HEAD
+=======
+            org.tinylog.Logger.error(e);
+>>>>>>> upstream/master
             showErrorMessage(java.util.ResourceBundle.getBundle("VisualLogic/Basic")
                     .getString("Fehler_in_Basis.saveToStream()_:") + e.toString());
         }
@@ -2289,7 +2333,11 @@ public class Basis implements ElementIF, VSBasisIF {
             Object o1;
 
             Bindings b = bindings;
+<<<<<<< HEAD
             ArrayList<OpenVariable> vars = variablenListe;
+=======
+            List<OpenVariable> vars = variablenListe;
+>>>>>>> upstream/master
 
             if (flowInfo.bindings != null) {
                 b = flowInfo.bindings;

@@ -39,8 +39,9 @@ import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
-import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -156,8 +157,13 @@ public class ElementPalette extends javax.swing.JPanel {
         return null;
     }
 
+<<<<<<< HEAD
     public Vector<String> getSortDefinitionFile(File file) {
         Vector<String> list = new Vector<>();
+=======
+    public List<String> getSortDefinitionFile(File file) {
+        List<String> list = new ArrayList<>();
+>>>>>>> upstream/master
         try {
             BufferedReader input = new BufferedReader(new FileReader(file.getAbsolutePath() + "/" + "sort.def"));
             String inputString;
@@ -229,7 +235,11 @@ public class ElementPalette extends javax.swing.JPanel {
     }
 
     private void reihenfolgeSortieren(File f, File files[]) {
+<<<<<<< HEAD
         Vector<String> lstReihenfolge = getSortDefinitionFile(f);
+=======
+        List<String> lstReihenfolge = getSortDefinitionFile(f);
+>>>>>>> upstream/master
 
         // Sortiere die Files nach der lstReihenfolge!
         for (int i = 0; i < lstReihenfolge.size(); i++) {

@@ -46,8 +46,10 @@ import java.awt.geom.GeneralPath;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import javax.swing.AbstractButton;
@@ -87,7 +89,7 @@ public class Element extends Shape implements MouseListener, MouseMotionListener
     public String docPath = "";
     public boolean isAlreadyCompiled = false; // zum Compilieren von SPS Code!
     public boolean closePath = false;
-    public ArrayList<PathPoint> points = new ArrayList<>();
+    public List<PathPoint> points = new ArrayList<>();
     public int pointSize = 10;
     public int elementRefreshDifferenz = 0;
     // bis zu 10 Tags k�nnen hier von FrontElement zu CircuitElement als sog. Parameter
@@ -244,8 +246,13 @@ public class Element extends Shape implements MouseListener, MouseMotionListener
          */
     }
 
+<<<<<<< HEAD
     public ArrayList<Object> notifyWhenDestCalledList = new ArrayList<>(); // List of ExternalIF!
     public ArrayList<JMenuItem> menuItems = new ArrayList<>();
+=======
+    public List<Object> notifyWhenDestCalledList = new ArrayList<>(); // List of ExternalIF!
+    public List<JMenuItem> menuItems = new ArrayList<>();
+>>>>>>> upstream/master
     public int elementIndex = 0;
 
     public void setSubPanelsVisible(boolean value) {
@@ -291,7 +298,11 @@ public class Element extends Shape implements MouseListener, MouseMotionListener
     public double fy1 = 0;
     public double fx = 0;
     public double fy = 0;
+<<<<<<< HEAD
     public ArrayList<ElementProperty> propertyList = new ArrayList<>();
+=======
+    public List<ElementProperty> propertyList = new ArrayList<>();
+>>>>>>> upstream/master
     /*
      * public int getOriginalWidth() { return originalWidth; } public int getOriginalHeight() { return
      * originalHeight; }
@@ -386,10 +397,17 @@ public class Element extends Shape implements MouseListener, MouseMotionListener
     private final int maxPins = 100;
     private final int pinWidth = 8;
     private final int pinHeight = 10;
+<<<<<<< HEAD
     private ArrayList<JPin> pinsLstTop;
     private ArrayList<JPin> pinsLstRight;
     private ArrayList<JPin> pinsLstBottom;
     private ArrayList<JPin> pinsLstLeft;
+=======
+    private List<JPin> pinsLstTop;
+    private List<JPin> pinsLstRight;
+    private List<JPin> pinsLstBottom;
+    private List<JPin> pinsLstLeft;
+>>>>>>> upstream/master
     private int pinsTop; // Anzhal der oberen Pins
     private int pinsBottom; // Anzhal der unteren Pins
     private int pinsLeft; // Anzhal der Pins Links
@@ -432,7 +450,11 @@ public class Element extends Shape implements MouseListener, MouseMotionListener
         }
     }
 
+<<<<<<< HEAD
     public void addPublishingFiles(ArrayList<String> list) {
+=======
+    public void addPublishingFiles(List<String> list) {
+>>>>>>> upstream/master
         if (elementBasis != null) {
             // 1. das Element selbst
             list.add(getInternName() + "&" + mainPath);
@@ -441,8 +463,13 @@ public class Element extends Shape implements MouseListener, MouseMotionListener
             if (classRef != null) {
                 try {
                     list.add(getInternName() + "&" + classRef.jGetVMFilename());
+<<<<<<< HEAD
                 } catch (AbstractMethodError | Exception e) {
 
+=======
+                } catch (AbstractMethodError e) {
+                    org.tinylog.Logger.error(e);
+>>>>>>> upstream/master
                 }
             }
 
@@ -627,7 +654,7 @@ public class Element extends Shape implements MouseListener, MouseMotionListener
 
     private int yDescriptionDistance = 0;
 
-    public ArrayList<PathPoint> jGetPointList() {
+    public List<PathPoint> jGetPointList() {
         return points;
     }
 
@@ -803,7 +830,12 @@ public class Element extends Shape implements MouseListener, MouseMotionListener
                 if (classRef != null) {
                     classRef.xsetExternalIF(this);
                 }
+<<<<<<< HEAD
             } catch (Exception | AbstractMethodError ex) {
+=======
+            } catch (AbstractMethodError | MalformedURLException ex) {
+                org.tinylog.Logger.error(ex);
+>>>>>>> upstream/master
                 owner.owner.showErrorMessage("Error loading Element!" + this.className + " ex=" + ex.toString());
                 classRef = null; // also Dummy!
             }
@@ -871,12 +903,8 @@ public class Element extends Shape implements MouseListener, MouseMotionListener
     }
 
     public void loadProperties() {
-        try {
-            if (classRef != null) {
-                classRef.setPropertyEditor();
-            }
-        } catch (Exception ex) {
-            // System.out.println("loadProperties() "+ex);
+        if (classRef != null) {
+            classRef.setPropertyEditor();
         }
     }
 
@@ -900,12 +928,17 @@ public class Element extends Shape implements MouseListener, MouseMotionListener
         try {
             ((PanelIF) classRef).processPanel(pinIndex, value, obj);
         } catch (Exception ex) {
+            org.tinylog.Logger.error(ex);
             owner.owner.showErrorMessage("PanelIF existiert nicht : " + ex);
         }
     }
 
     public void moveElement(int srcIndex, int dstIndex) {
+<<<<<<< HEAD
         ArrayList<Element> elemente = getVMObject().getElementList();
+=======
+        List<Element> elemente = getVMObject().getElementList();
+>>>>>>> upstream/master
         Element temp = getVMObject().getElement(srcIndex);
         elemente.remove(temp);
         elemente.add(dstIndex, temp);
@@ -919,8 +952,10 @@ public class Element extends Shape implements MouseListener, MouseMotionListener
             owner.sortSubPanels();
             repaint();
         } catch (IllegalArgumentException e) {
+            org.tinylog.Logger.error(e);
             System.out.println("Error VisualLogic.Element.inDenVordergrund(Element.java:906) " + e.getMessage());
         } catch (Exception e) {
+            org.tinylog.Logger.error(e);
             System.out.println("Error VisualLogic.Element.inDenVordergrund " + e.getMessage());
         }
     }
@@ -1083,6 +1118,7 @@ public class Element extends Shape implements MouseListener, MouseMotionListener
                         }
                     }
                 } catch (Exception ex) {
+                    org.tinylog.Logger.error(ex);
                     owner.owner.showErrorMessage("Error loading Component <" + strName + "> :" + ex);
                 }
             } else {
@@ -1103,9 +1139,11 @@ public class Element extends Shape implements MouseListener, MouseMotionListener
                     initPins(true);
                     alreadyInitialized = true;
                 } catch (Exception ex) {
+                    org.tinylog.Logger.error(ex);
                 }
             }
         } catch (Exception ex) {
+            org.tinylog.Logger.error(ex);
             owner.owner.showErrorMessage("Error in Element.loadFromStream() :" + ex.toString());
         }
     }
@@ -1881,7 +1919,7 @@ public class Element extends Shape implements MouseListener, MouseMotionListener
         if (io == 0 || io == 1 || io == 2 || io == 3) {
             pin.pinIO = io;
         } else {
-            System.out.println("PinIO ist auserhalb von 0 - 3");
+            Logger.info("PinIO ist auserhalb von 0 - 3");
         }
     }
 
@@ -2474,7 +2512,11 @@ public class Element extends Shape implements MouseListener, MouseMotionListener
 
     @Override
     public void writePinBoolean(int index, boolean value) {
+<<<<<<< HEAD
         writeInformationToDest(index, value);
+=======
+        writeInformationToDest(index, Boolean.valueOf(value));
+>>>>>>> upstream/master
     }
 
     @Override
@@ -2497,8 +2539,7 @@ public class Element extends Shape implements MouseListener, MouseMotionListener
         JPin pin = getPin(index);
         Object obj = pin.object;
         if (obj instanceof Boolean) {
-            Boolean value = (Boolean) obj;
-            return value;
+            return (Boolean) obj;
         } else {
             return false;
         }
@@ -2921,6 +2962,7 @@ public class Element extends Shape implements MouseListener, MouseMotionListener
                 }
             }
         } catch (Exception ex) {
+            org.tinylog.Logger.error(ex);
         }
     }
 
@@ -2937,7 +2979,12 @@ public class Element extends Shape implements MouseListener, MouseMotionListener
             if (classRef != null) {
                 try {
                     classRef.xpaint(g);
+<<<<<<< HEAD
                 } catch (Exception | NoSuchFieldError ex) {
+=======
+                } catch (NoSuchFieldError ex) {
+                    org.tinylog.Logger.error(ex);
+>>>>>>> upstream/master
                     owner.owner.showErrorMessage(
                             "Error in Element \"" + this.jGetCaption() + "\" Method : xpaint() : " + ex.toString());
                 }
@@ -3092,7 +3139,7 @@ public class Element extends Shape implements MouseListener, MouseMotionListener
             try {
                 mc.waitForID(0);
             } catch (Exception exe) {
-
+                org.tinylog.Logger.error(exe);
             }
             return result;
             // System.out.println("fn"+fn);

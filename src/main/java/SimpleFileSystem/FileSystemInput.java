@@ -24,14 +24,19 @@ import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Carmelo Salafia FileSystemInput ist f�r das einlesen der Datensaetze und ihrer IndexListe
  *         verantwortlich liest aus dem kuenstliches Dateisystem!
  */
 public class FileSystemInput {
+<<<<<<< HEAD
 
     private ArrayList<SFileDescriptor> liste = new ArrayList<>();
+=======
+    private List<SFileDescriptor> liste = new ArrayList<>();
+>>>>>>> upstream/master
     private FileInputStream fis = null;
 
     /**
@@ -70,6 +75,7 @@ public class FileSystemInput {
                 liste.add(dt);
             }
         } catch (Exception ex) {
+            org.tinylog.Logger.error(ex);
             System.out.println("Error in Methode loadIndexList()" + ex);
         }
     }
@@ -82,7 +88,11 @@ public class FileSystemInput {
     }
 
     public SFileDescriptor[] getAllBeginsWith(String str) {
+<<<<<<< HEAD
         ArrayList<SFileDescriptor> lst = new ArrayList<>();
+=======
+        List<SFileDescriptor> lst = new ArrayList<>();
+>>>>>>> upstream/master
         for (int i = 0; i < liste.size(); i++) {
             SFileDescriptor dt = getFileDescriptor(i);
             if (dt.filename.contains(str)) {
@@ -93,7 +103,7 @@ public class FileSystemInput {
         SFileDescriptor[] descriptoren = new SFileDescriptor[lst.size()];
 
         for (int i = 0; i < lst.size(); i++) {
-            descriptoren[i] = (SFileDescriptor) lst.get(i);
+            descriptoren[i] = lst.get(i);
         }
 
         return descriptoren;
@@ -107,7 +117,7 @@ public class FileSystemInput {
         try {
             fis.getChannel().position(dt.position);
         } catch (Exception ex) {
-
+            org.tinylog.Logger.error(ex);
         }
         return fis;
     }
@@ -126,6 +136,7 @@ public class FileSystemInput {
         try {
             fis.close();
         } catch (Exception ex) {
+            org.tinylog.Logger.error(ex);
             System.out.println("Error in Methode close()" + ex.toString());
         }
     }

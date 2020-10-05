@@ -21,12 +21,13 @@
 package VisualLogic;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Carmelo
  */
 public class DataHistory {
-    private ArrayList<DataEntry> list = new ArrayList<DataEntry>();
+    private List<DataEntry> list = new ArrayList<DataEntry>();
 
     /**
      * Creates a new instance of DataHistory

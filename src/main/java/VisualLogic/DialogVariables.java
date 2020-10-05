@@ -20,7 +20,7 @@
 
 package VisualLogic;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.DefaultListModel;
 
@@ -32,7 +32,11 @@ import MyParser.OpenVariable;
 public class DialogVariables extends javax.swing.JDialog {
     private DefaultListModel<OpenVariable> model = new DefaultListModel<>();
     private Basis basis;
+<<<<<<< HEAD
     private ArrayList<OpenVariable> liste;
+=======
+    private List<OpenVariable> liste;
+>>>>>>> upstream/master
 
     /**
      * Creates new form DialogVariables

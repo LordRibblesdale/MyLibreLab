@@ -21,6 +21,7 @@
 package VisualLogic;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.DefaultListModel;
 
@@ -31,7 +32,11 @@ import MyParser.OpenVariable;
  */
 public class DialogVariableWatcher extends javax.swing.JDialog {
 
+<<<<<<< HEAD
     public ArrayList<OpenVariable> variablenListe = new ArrayList<>();
+=======
+    public List<OpenVariable> variablenListe = new ArrayList<>();
+>>>>>>> upstream/master
     private DefaultListModel<String> model = new DefaultListModel<>();
 
     /**
@@ -56,7 +61,11 @@ public class DialogVariableWatcher extends javax.swing.JDialog {
         }
     }
 
+<<<<<<< HEAD
     public void execute(ArrayList<OpenVariable> variablenListe) {
+=======
+    public void execute(List<OpenVariable> variablenListe) {
+>>>>>>> upstream/master
         this.variablenListe = variablenListe;
     }
 

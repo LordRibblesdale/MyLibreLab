@@ -34,6 +34,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.w3c.dom.NodeList;
 
@@ -54,8 +55,13 @@ public class Draht implements Serializable {
     public boolean resursive = false;
     public int sourceElementID;
     public int destElementID;
+<<<<<<< HEAD
     public ArrayList<PolyPoint> polyList = new ArrayList<>();
     public ArrayList<Line> lineList = new ArrayList<>();
+=======
+    public List<PolyPoint> polyList = new ArrayList<>();
+    public List<Line> lineList = new ArrayList<>();
+>>>>>>> upstream/master
     private Stroke strockeStandard = new BasicStroke(1);
     private Stroke strockeDick = new BasicStroke(3);
     private Stroke strockeExtraDick = new BasicStroke(4);
@@ -138,6 +144,7 @@ public class Draht implements Serializable {
                 }
             }
         } catch (Exception ex) {
+            org.tinylog.Logger.error(ex);
             vmobject.owner.showErrorMessage("" + ex.toString());
         }
         this.sourceElementID = sourceElementID;
@@ -162,6 +169,7 @@ public class Draht implements Serializable {
                 p.saveToStream(dos);
             }
         } catch (Exception ex) {
+            org.tinylog.Logger.error(ex);
             vmobject.owner.showErrorMessage("" + ex.toString());
         }
     }
@@ -626,6 +634,7 @@ public class Draht implements Serializable {
                     if (aa != null) dataTypeSrc = aa.dataType;
                     if (bb != null) dataTypeDest = bb.dataType;
                 } catch (Exception ex) {
+                    org.tinylog.Logger.error(ex);
                     return;
                 }
 

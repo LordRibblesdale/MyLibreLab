@@ -20,6 +20,8 @@
 
 package VisualLogic.variables;
 
+import org.tinylog.Logger;
+
 public class VSByte extends VSObject {
     private byte value;
 
@@ -75,11 +77,11 @@ public class VSByte extends VSObject {
                 converted |= comp;
             }
             if (logging) {
-                System.out.print((comp & value) != 0 ? "1" : "0");
+                Logger.info((comp & value) != 0 ? "1" : "0");
             }
         }
         if (logging) {
-            System.out.println();
+            Logger.info("\n");
         }
         return converted;
     }
@@ -127,7 +129,7 @@ public class VSByte extends VSObject {
 
             value = dis.readByte();
         } catch (Exception ex) {
-
+            org.tinylog.Logger.error(ex);
         }
     }
 
@@ -136,6 +138,7 @@ public class VSByte extends VSObject {
             java.io.DataOutputStream dos = new java.io.DataOutputStream(fos);
             dos.writeByte(value);
         } catch (Exception ex) {
+            org.tinylog.Logger.error(ex);
             VisualLogic.Tools.showMessage("Fehler in VSByte.saveToStream() : " + ex.toString());
         }
     }
@@ -144,7 +147,7 @@ public class VSByte extends VSObject {
         try {
             value = Byte.parseByte(nodeElement.getAttribute("VSByte" + name));
         } catch (Exception ex) {
-
+            org.tinylog.Logger.error(ex);
         }
     }
 

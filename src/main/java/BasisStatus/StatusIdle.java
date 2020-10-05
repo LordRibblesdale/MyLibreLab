@@ -237,7 +237,7 @@ public class StatusIdle implements StatusBasisIF {
                                         try {
                                             f.createNewFile();
                                         } catch (IOException ex) {
-                                            ex.printStackTrace();
+                                            org.tinylog.Logger.error(ex);
                                         }
                                     }
                                     try {

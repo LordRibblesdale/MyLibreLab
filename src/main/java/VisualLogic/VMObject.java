@@ -58,12 +58,15 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
+
+import org.tinylog.Logger;
 
 import BasisStatus.StatusAddElement;
 import BasisStatus.StatusAddWire;
@@ -98,8 +101,13 @@ public class VMObject extends JPanel
 
     private ExternalIF element;
     private final int maxElements = 2000;
+<<<<<<< HEAD
     public ArrayList<BasisProperty> propertyList = new ArrayList<>();
     public ArrayList<Element> clockList = new ArrayList<>();
+=======
+    public List<BasisProperty> propertyList = new ArrayList<>();
+    public List<Element> clockList = new ArrayList<>();
+>>>>>>> upstream/master
     /*
      * public ArrayList subRoutineList = new ArrayList(); public SubRoutine searchSubRoutine(String
      * name) { name=name.trim(); for (int i=0;i<subRoutineList.size();i++) { SubRoutine
@@ -134,9 +142,15 @@ public class VMObject extends JPanel
     private VSInteger vsCustomYwindowPos = new VSInteger(0);
 
     private int elementsCount = 0;
+<<<<<<< HEAD
     private ArrayList<Element> elList;
     private boolean borderVisible = true;
     public ArrayList<Draht> drahtLst;
+=======
+    private List<Element> elList;
+    private boolean borderVisible = true;
+    public List<Draht> drahtLst;
+>>>>>>> upstream/master
     private String elementPath;
     private ArrayList elementListe;
     private boolean aktuellIstBasis = false;
@@ -156,10 +170,17 @@ public class VMObject extends JPanel
         borderVisible = value;
     }
 
+<<<<<<< HEAD
     public ArrayList<Draht> processList = new ArrayList<>();
 
     // public ArrayList processList = new ArrayList();
     public ArrayList<Element> getElementList() {
+=======
+    public List<Draht> processList = new ArrayList<>();
+
+    // public ArrayList processList = new ArrayList();
+    public List<Element> getElementList() {
+>>>>>>> upstream/master
         return elList;
     }
 
@@ -324,10 +345,17 @@ public class VMObject extends JPanel
     // werden nur genutzt, wenn die Basis als Element benutzt wird!
     private Font stdFont = new Font("Courier", 0, 8);
     public String settingsTitel = "";
+<<<<<<< HEAD
     private ArrayList<Element> topPins = new ArrayList<>();
     private ArrayList<Element> rightPins = new ArrayList<>();
     private ArrayList<Element> bottomPins = new ArrayList<>();
     private ArrayList<Element> leftPins = new ArrayList<>();
+=======
+    private List<Element> topPins = new ArrayList<>();
+    private List<Element> rightPins = new ArrayList<>();
+    private List<Element> bottomPins = new ArrayList<>();
+    private List<Element> leftPins = new ArrayList<>();
+>>>>>>> upstream/master
     private static long time1;
     private static long time2;
     private static int counter = 0;
@@ -380,7 +408,11 @@ public class VMObject extends JPanel
     }
 
     public ExternalIF[] getElementList(VSBasisIF basis, String elementName) {
+<<<<<<< HEAD
         ArrayList<Element> liste = new ArrayList<>();
+=======
+        List<Element> liste = new ArrayList<>();
+>>>>>>> upstream/master
 
         VMObject vm = ((Basis) basis).getCircuitBasis();
         int c = 0;
@@ -449,7 +481,11 @@ public class VMObject extends JPanel
         }
     }
 
+<<<<<<< HEAD
     public void addPublishingFiles(ArrayList<String> list) {
+=======
+    public void addPublishingFiles(List<String> list) {
+>>>>>>> upstream/master
         Element el;
         for (int i = 0; i < getElementCount(); i++) {
             el = getElement(i);
@@ -1574,7 +1610,7 @@ public class VMObject extends JPanel
             aktiveElement = addElementIntoCanvas(mainPath, binPath, circuitClass, args);
             aktiveElement.circuitElementID = aktiveElement.getID();
 
-            System.out.println(aktiveElement.owner.owner.getFrontBasis().getElementCount());
+            Logger.info(aktiveElement.owner.owner.getFrontBasis().getElementCount());
 
             if (!panelClass.trim().equalsIgnoreCase("")) {
                 element = frontvmobject.addElementIntoCanvas(mainPath, binPath, panelClass, args);
@@ -1613,7 +1649,11 @@ public class VMObject extends JPanel
         owner.setChanged(true);
 
         // Alle Markierten Elemente loeschen
+<<<<<<< HEAD
         ArrayList<Element> deletedList = new ArrayList<>();
+=======
+        List<Element> deletedList = new ArrayList<>();
+>>>>>>> upstream/master
 
         for (Element el : elList) {
             if (el.isSelected()) {
@@ -1689,8 +1729,8 @@ public class VMObject extends JPanel
         return c;
     }
 
-    public ArrayList<Element> getSelectedElements() {
-        ArrayList<Element> result = new ArrayList<Element>();
+    public List<Element> getSelectedElements() {
+        List<Element> result = new ArrayList<Element>();
 
         int c = 0;
         for (Element el : elList) {
@@ -2248,7 +2288,11 @@ public class VMObject extends JPanel
 
     public Element[] getAllTestpointElementsDouble() {
         Element[] nodes = getAllTestpointElements();
+<<<<<<< HEAD
         ArrayList<Element> liste = new ArrayList<>();
+=======
+        List<Element> liste = new ArrayList<>();
+>>>>>>> upstream/master
 
         for (Element node : nodes) {
             if (node.getPin(0).dataType == ExternalIF.C_DOUBLE) {
@@ -2265,7 +2309,11 @@ public class VMObject extends JPanel
 
     public Element[] getAllTestpointElementsBoolean() {
         Element[] nodes = getAllTestpointElements();
+<<<<<<< HEAD
         ArrayList<Element> liste = new ArrayList<>();
+=======
+        List<Element> liste = new ArrayList<>();
+>>>>>>> upstream/master
 
         for (Element node : nodes) {
             if (node.getPin(0).dataType == ExternalIF.C_BOOLEAN) {
@@ -2281,7 +2329,11 @@ public class VMObject extends JPanel
     }
 
     public Element[] getAllTestpointElements() {
+<<<<<<< HEAD
         ArrayList<Element> temp = new ArrayList<>();
+=======
+        List<Element> temp = new ArrayList<>();
+>>>>>>> upstream/master
         Element element;
         for (int i = 0; i < getElementCount(); i++) {
             element = getElement(i);
@@ -3172,7 +3224,11 @@ public class VMObject extends JPanel
         }
     }
 
+<<<<<<< HEAD
     public void readElements(int size, FileSystemInput fsIn, boolean fromAblage, ArrayList<Integer> ElemetTabelle) {
+=======
+    public void readElements(int size, FileSystemInput fsIn, boolean fromAblage, List<Integer> ElemetTabelle) {
+>>>>>>> upstream/master
         int id = -1;
 
         for (int i = 0; i < size; i++) {
@@ -3273,7 +3329,11 @@ public class VMObject extends JPanel
         return destPin < element.getPinCount();
     }
 
+<<<<<<< HEAD
     public void readDrahts(int size, FileSystemInput fsIn, boolean fromAblage, ArrayList<Integer> ElemetTabelle) {
+=======
+    public void readDrahts(int size, FileSystemInput fsIn, boolean fromAblage, List<Integer> ElemetTabelle) {
+>>>>>>> upstream/master
         FileInputStream fis = fsIn.gotoItem(owner.fileCount++);
         DataInputStream stream = new DataInputStream(fis);
         try {
@@ -3389,7 +3449,11 @@ public class VMObject extends JPanel
             progress = 0;
         }
 
+<<<<<<< HEAD
         ArrayList<Integer> ElemetTabelle = new ArrayList<>();
+=======
+        List<Integer> ElemetTabelle = new ArrayList<>();
+>>>>>>> upstream/master
         try {
             FileInputStream fis = fsIn.gotoItem(owner.fileCount++);
             DataInputStream stream = new DataInputStream(fis);
